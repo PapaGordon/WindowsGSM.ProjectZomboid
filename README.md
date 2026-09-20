@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/Raziel7893/WindowsGSM/releases/tag/v1.25.1.22"><img src="https://img.shields.io/badge/WindowsGSM-Raziel%20v1.25.1.22-38CDD4" alt="Raziel WindowsGSM v1.25.1.22"></a>
+  <a href="https://github.com/Raziel7893/WindowsGSM/releases/tag/v1.25.2.1"><img src="https://img.shields.io/badge/WindowsGSM-Raziel%20v1.25.2.1-38CDD4" alt="Raziel WindowsGSM v1.25.2.1"></a>
   <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-0.1.1-EF3F28" alt="Version 0.1.1"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
 </p>
@@ -39,7 +39,7 @@ This plugin installs, updates and runs the Project Zomboid dedicated server thro
 
 ## Requirements
 
-- [WindowsGSM](https://github.com/WindowsGSM/WindowsGSM) 1.21 or newer
+- [Raziel7893/WindowsGSM v1.25.2.1](https://github.com/Raziel7893/WindowsGSM/releases/tag/v1.25.2.1) or a compatible Raziel WindowsGSM build
 - Administrator rights for WindowsGSM
 - Supported 64-bit Windows installation
 
@@ -132,6 +132,7 @@ Start the dedicated server once so Project Zomboid can generate its default file
 - Source: [PapaGordon/WindowsGSM.ProjectZomboid-MeFriendos](https://github.com/PapaGordon/WindowsGSM.ProjectZomboid-MeFriendos)
 - Original plugin: [DoctorBeardz/WindowsGSM.ProjectZomboid](https://github.com/DoctorBeardz/WindowsGSM.ProjectZomboid)
 - Project Zomboid: [projectzomboid.com](https://projectzomboid.com)
+- WindowsGSM: [Raziel7893/WindowsGSM v1.25.2.1](https://github.com/Raziel7893/WindowsGSM/releases/tag/v1.25.2.1)
 - Community: [mefriendos.de](https://mefriendos.de)
 
 This is an independent community plugin. It is not affiliated with or endorsed by The Indie Stone or WindowsGSM.
