@@ -1,8 +1,7 @@
+// Made by PapaGordon
 using System;
-using System.Collections;
 using System.Diagnostics;
 using System.IO;
-using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,7 +33,7 @@ namespace WindowsGSM.Plugins
 			name = "WindowsGSM.ProjectZomboid",
 			author = "MeFriendos",
 			description = "WindowsGSM plugin for Project Zomboid Dedicated Server (MeFriendos build)",
-			version = "0.1.1",
+			version = "0.1.2",
 			url = "https://github.com/PapaGordon/WindowsGSM.ProjectZomboid-MeFriendos",
 			color = "#38CDD4"
 		};
@@ -82,79 +81,9 @@ namespace WindowsGSM.Plugins
             return param.ToString();
         }
 
-        private bool RemoveAutomaticBroadFirewallRule()
-        {
-            string programPath = ServerPath.GetServersServerFiles(serverData.ServerID, StartPath);
-
-            try
-            {
-                Type managerType = Type.GetTypeFromProgID("HNetCfg.FwMgr");
-                if (managerType == null)
-                    return false;
-
-                object manager = Activator.CreateInstance(managerType);
-                object localPolicy = manager.GetType().InvokeMember(
-                    "LocalPolicy", BindingFlags.GetProperty, null, manager, null);
-                object currentProfile = localPolicy.GetType().InvokeMember(
-                    "CurrentProfile", BindingFlags.GetProperty, null, localPolicy, null);
-                object applications = currentProfile.GetType().InvokeMember(
-                    "AuthorizedApplications", BindingFlags.GetProperty, null, currentProfile, null);
-
-                IEnumerable entries = applications as IEnumerable;
-                if (entries == null)
-                    return false;
-
-                bool found = false;
-                foreach (object application in entries)
-                {
-                    string applicationPath = Convert.ToString(application.GetType().InvokeMember(
-                        "ProcessImageFileName", BindingFlags.GetProperty, null, application, null));
-
-                    if (string.Equals(applicationPath, programPath, StringComparison.OrdinalIgnoreCase))
-                    {
-                        found = true;
-                        break;
-                    }
-                }
-
-                if (!found)
-                    return true;
-
-                applications.GetType().InvokeMember(
-                    "Remove", BindingFlags.InvokeMethod, null, applications, new object[] { programPath });
-
-                applications = currentProfile.GetType().InvokeMember(
-                    "AuthorizedApplications", BindingFlags.GetProperty, null, currentProfile, null);
-                entries = applications as IEnumerable;
-                if (entries == null)
-                    return false;
-
-                foreach (object application in entries)
-                {
-                    string applicationPath = Convert.ToString(application.GetType().InvokeMember(
-                        "ProcessImageFileName", BindingFlags.GetProperty, null, application, null));
-
-                    if (string.Equals(applicationPath, programPath, StringComparison.OrdinalIgnoreCase))
-                        return false;
-                }
-
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
 		// - Start server function, return its Process to WindowsGSM
 		public async Task<Process> Start()
 		{
-			if (!RemoveAutomaticBroadFirewallRule())
-			{
-				Error = "Automatic firewall access could not be disabled. Start WindowsGSM as administrator or remove the broad Java rule manually.";
-				return null;
-			}
-
 			// Prepare Process
             var p = new Process
             {

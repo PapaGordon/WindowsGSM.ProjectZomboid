@@ -1,4 +1,4 @@
-VERSION 0.1.1
+VERSION 0.1.2
 
 WindowsGSM.ProjectZomboid - MeFriendos build
 ================================================
@@ -12,15 +12,11 @@ Installation
 
 Firewall behavior
 -----------------
-WindowsGSM creates an automatic application exception for the bundled java.exe before every server start.
+Firewall management follows WindowsGSM's per-server Auto Firewall setting.
+The plugin does not create, remove or inspect firewall rules and does not block startup for a plugin firewall check.
 
-This build removes that exact application exception through the same Windows Firewall COM API family used by WindowsGSM itself. It then checks the authorized-application list again before allowing Java to start.
-
-The cleanup does not depend on the PowerShell NetSecurity cmdlets. Manual port rules are not created or removed, and Java rules belonging to another server are not selected because the exact executable path must match.
-
-Automatic port opening is intentionally disabled. Configure only the required port, protocol, Windows profile and remote scope manually.
-
-If Windows cannot verify or remove the matching automatic exception, the plugin refuses to start the server and shows an error. Run WindowsGSM as administrator.
+Use a WindowsGSM build with Auto Firewall, such as https://github.com/PapaGordon/WindowsGSM.
+For manual port rules, turn Auto Firewall off for this server in WindowsGSM and configure the required ports yourself. Router forwarding remains separate.
 
 MeFriendos setup
 ----------------

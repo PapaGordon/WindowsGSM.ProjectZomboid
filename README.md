@@ -10,11 +10,11 @@
 
 <p align="center">
   <a href="https://github.com/Raziel7893/WindowsGSM/releases/tag/v1.25.2.2"><img src="https://img.shields.io/badge/WindowsGSM-Raziel%20v1.25.2.2-38CDD4" alt="Raziel WindowsGSM v1.25.2.2"></a>
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-0.1.1-EF3F28" alt="Version 0.1.1"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-0.1.2-EF3F28" alt="Version 0.1.2"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
 </p>
 
-This plugin installs, updates and runs the Project Zomboid dedicated server through SteamCMD. The MeFriendos build is based on `WindowsGSM.ProjectZomboid` by Richard Beard and keeps its normal server behavior while preventing unrestricted automatic firewall access.
+This plugin installs, updates and runs the Project Zomboid dedicated server through SteamCMD. The MeFriendos build is based on `WindowsGSM.ProjectZomboid` by Richard Beard and keeps its normal server behavior while leaving firewall management to WindowsGSM.
 
 ## Features
 
@@ -23,7 +23,7 @@ This plugin installs, updates and runs the Project Zomboid dedicated server thro
 - Supports the embedded WindowsGSM console and graceful shutdown.
 - Passes the configured WindowsGSM game port to Project Zomboid.
 - Keeps the server configuration and saves inside the WindowsGSM server directory.
-- Removes WindowsGSM's automatic firewall application exception for the exact bundled `java.exe` before Java starts listening.
+- Leaves firewall management to WindowsGSM's per-server **Auto Firewall** setting.
 - Leaves targeted manual firewall rules unchanged.
 
 ## Quick overview
@@ -35,12 +35,11 @@ This plugin installs, updates and runs the Project Zomboid dedicated server thro
 | Default game/query port | `16261` |
 | Installation method | Anonymous SteamCMD login |
 | Server configuration | `Zomboid\Server` inside the WindowsGSM server directory |
-| Firewall ports | Manual configuration only |
+| Firewall ports | WindowsGSM Auto Firewall or manual port rules |
 
 ## Requirements
 
-- [Raziel7893/WindowsGSM v1.25.2.1](https://github.com/Raziel7893/WindowsGSM/releases/tag/v1.25.2.1) or a compatible Raziel WindowsGSM build
-- Administrator rights for WindowsGSM
+- A compatible WindowsGSM build with per-server **Auto Firewall**, such as [our WindowsGSM build](https://github.com/PapaGordon/WindowsGSM)
 - Supported 64-bit Windows installation
 
 Project Zomboid supplies its own Java runtime. A separate Java installation is not required.
@@ -52,7 +51,7 @@ Project Zomboid supplies its own Java runtime. A separate Java installation is n
 3. Click **Reload Plugins** or restart WindowsGSM.
 4. Add **Project Zomboid Dedicated Server** in WindowsGSM.
 5. Click **Install** and wait for SteamCMD to finish.
-6. Configure the required game and RCON firewall rules manually.
+6. Set **Auto Firewall** in WindowsGSM as needed. For manual game and RCON rules, turn it off first.
 7. Start the server.
 
 ## Updating Project Zomboid
@@ -64,17 +63,11 @@ Project Zomboid supplies its own Java runtime. A separate Java installation is n
 
 SteamCMD updates the dedicated-server files. The plugin does not intentionally modify your save, server INI, sandbox settings, mod list or Workshop list.
 
-## Security: automatic port opening is disabled
+## Firewall
 
-WindowsGSM creates an application exception for the server's bundled `jre64\bin\java.exe` before calling the plugin's start method. This build removes that exact program exception before Java starts listening.
+Firewall management follows WindowsGSM's per-server **Auto Firewall** setting. This plugin does not create, remove or inspect firewall rules and does not block startup for a plugin firewall check.
 
-The cleanup uses the same Windows Firewall COM API family (`HNetCfg.FwMgr`) that WindowsGSM uses for its own automatic application rules. It does not depend on the PowerShell `NetSecurity` cmdlets.
-
-Manual port rules are not created or removed by the plugin. Rules for other Java installations or other WindowsGSM servers are not selected because the exact executable path must match.
-
-After removing the application exception, the plugin checks the authorized-application list again. If Windows cannot verify or remove the matching exception, startup is stopped and an error is reported. WindowsGSM should therefore run as administrator.
-
-The plugin does **not** create game-port or RCON rules. This is intentional: a narrow rule for a known port, protocol, network profile and remote scope is safer than allowing the complete Java runtime through the firewall.
+Use a WindowsGSM build with **Auto Firewall**, such as our [WindowsGSM build](https://github.com/PapaGordon/WindowsGSM). For the MeFriendos setup with manual port rules, turn **Auto Firewall** off for this server in WindowsGSM and configure the required ports yourself. Router forwarding remains separate.
 
 For the MeFriendos setup, the intended manual policy is:
 
@@ -102,7 +95,7 @@ Important server configuration files are normally found in:
 
 ### The server does not start after installing this build
 
-Run WindowsGSM as administrator and check the WindowsGSM error message. The plugin refuses to launch if it cannot complete the firewall safety check.
+Check the WindowsGSM error message and server log. Firewall settings are managed by WindowsGSM; this plugin no longer performs a firewall check during startup.
 
 ### Players cannot connect
 
@@ -122,9 +115,8 @@ Start the dedicated server once so Project Zomboid can generate its default file
 - Install and Update complete through SteamCMD.
 - The embedded console receives Project Zomboid server output.
 - The server is reachable through the manually configured game ports.
-- No automatic application exception remains for this server's bundled `java.exe` after startup.
+- Auto Firewall on/off is controlled by WindowsGSM and is not overridden by the plugin.
 - Manually configured port rules remain present.
-- A firewall-cleanup failure prevents the Java process from starting.
 - RCON works over the Private VPN connection and remains unavailable publicly.
 
 ## Project links
