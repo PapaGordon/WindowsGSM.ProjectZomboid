@@ -33,8 +33,8 @@ namespace WindowsGSM.Plugins
 			name = "WindowsGSM.ProjectZomboid",
 			author = "MeFriendos",
 			description = "WindowsGSM plugin for Project Zomboid Dedicated Server (MeFriendos build)",
-			version = "0.1.2",
-			url = "https://github.com/PapaGordon/WindowsGSM.ProjectZomboid-MeFriendos",
+			version = "0.1.3",
+			url = "https://github.com/PapaGordon/WindowsGSM.ProjectZomboid",
 			color = "#38CDD4"
 		};
 
