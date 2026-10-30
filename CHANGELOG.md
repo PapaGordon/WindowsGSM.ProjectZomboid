@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Uses the original Project Zomboid game icon.
+
+
 ## 0.1.3 - 2026-10-29
 
 

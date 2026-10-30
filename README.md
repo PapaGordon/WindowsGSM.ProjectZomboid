@@ -147,3 +147,7 @@ Maintained by Brandon Hanke (PapaGordon), owner of MeFriendos.de.
 The original plugin and this MeFriendos build are released under the [MIT License](LICENSE). The original copyright and license notice are retained.
 
 You can use, modify and redistribute this plugin, including commercially. Keep the copyright and license notices with any copies or substantial portions of the code.
+
+## Artwork
+
+The game icon is the original Steam artwork, converted losslessly to PNG. See [artwork credits](licenses/Native-artwork.txt). The artwork has separate rights from the plugin code.

@@ -1,0 +1,5 @@
+Project Zomboid artwork: The Indie Stone.
+Source: https://shared.fastly.steamstatic.com/community_assets/images/apps/108600/2bd4642ae337e378e7b04a19d19683425c5f81a4.jpg
+
+Original Steam game icon, converted losslessly from JPEG to PNG for game identification.
+Artwork and trademarks remain with their respective rights holders and are not covered by the plugin code's MIT license. No affiliation or endorsement is implied.
