@@ -1,36 +1,29 @@
-VERSION 0.1.2
+WindowsGSM.ProjectZomboid 0.1.3
+===============================
 
-WindowsGSM.ProjectZomboid - MeFriendos build
-================================================
+Runs a Project Zomboid dedicated server with WindowsGSM.
 
-Installation
-------------
-1. Copy the complete ProjectZomboid.cs folder into the WindowsGSM plugins folder.
-2. Reload plugins or restart WindowsGSM.
-3. Add or import the Project Zomboid server.
-4. Configure the required game and RCON ports manually in Windows Firewall.
+If you use MeFriendos WindowsGSM, you don't need this plugin.
+Project Zomboid is already built in there.
 
-Firewall behavior
------------------
-Firewall management follows WindowsGSM's per-server Auto Firewall setting.
-The plugin does not create, remove or inspect firewall rules and does not block startup for a plugin firewall check.
-
-Use MeFriendos WindowsGSM v1.25.3.0 with Auto Firewall:
-https://github.com/PapaGordon/WindowsGSM/releases/tag/v1.25.3.0
-For manual port rules, turn Auto Firewall off for this server in WindowsGSM and configure the required ports yourself. Router forwarding remains separate.
-
-MeFriendos setup
-----------------
-- Game UDP ports: Public profile
-- RCON TCP port: Private profile, VPN/local subnet only
-- RCON TCP port: blocked on Public
-
-Use the ports configured for your own server.
-
-Credits
+Install
 -------
-Based on WindowsGSM.ProjectZomboid by Richard Beard.
-MeFriendos build by PapaGordon / MeFriendos.
+1. Copy this whole ProjectZomboid.cs folder into the "plugins" folder
+   of WindowsGSM.
+2. Click "Reload Plugins" or restart WindowsGSM.
+3. Pick "Project Zomboid Dedicated Server" and click Install.
+   No Steam account needed.
+4. Start the server once and enter a new admin password in the console.
+5. Stop it and edit the settings in servers\<server ID>\Zomboid\Server.
 
-https://github.com/PapaGordon/WindowsGSM.ProjectZomboid-MeFriendos
-https://mefriendos.de
+Good to know
+------------
+- The server always starts with 16 GB RAM (-Xms16g -Xmx16g in ProjectZomboid.cs).
+- Max Players from WindowsGSM isn't used. Set the limit in the server INI.
+- The plugin doesn't change firewall rules. Open the game UDP ports and keep
+  RCON closed to the internet (local network or VPN only).
+
+Full guide: https://github.com/PapaGordon/WindowsGSM.ProjectZomboid
+
+Based on WindowsGSM.ProjectZomboid by Richard Beard.
+MeFriendos build by PapaGordon. https://mefriendos.de
