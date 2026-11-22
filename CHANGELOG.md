@@ -1,8 +1,10 @@
 # Changelog
 
-## Unreleased
+## 0.1.4 - 2026-11-22
 
+- The server's RAM can be set with `-Xmx` (and `-Xms`) in the start parameters. Without them it stays at 16 GB as before.
 - Uses the original Project Zomboid game icon.
+- Rewrote the README and install notes.
 
 
 ## 0.1.3 - 2026-10-29

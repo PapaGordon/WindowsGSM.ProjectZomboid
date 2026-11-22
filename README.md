@@ -10,7 +10,7 @@
 
 <p align="center">
   <a href="https://github.com/PapaGordon/WindowsGSM/releases/latest"><img src="https://img.shields.io/badge/WindowsGSM-MeFriendos%20latest-38CDD4" alt="Latest MeFriendos WindowsGSM"></a>
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-0.1.3-EF3F28" alt="Version 0.1.3"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-0.1.4-EF3F28" alt="Version 0.1.4"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
 </p>
 
@@ -43,7 +43,7 @@ This plugin installs and updates the Project Zomboid dedicated server through St
 | --- | --- |
 | Game port | `16261` (UDP). Passed to the server as `-port`. |
 | Server name | `servertest`. Add `-servername <name>` to the start parameters for another name. |
-| Memory | Always 16 GB, see below |
+| Memory | 16 GB, see below |
 
 **Max Players** from WindowsGSM is not passed to the server. Set the player limit and everything else in the server's INI file.
 
@@ -56,7 +56,13 @@ These files appear after the first start. Only edit them while the server is sto
 
 ### Memory
 
-The server always starts with 16 GB of RAM (`-Xms16g -Xmx16g`). That's fixed in the plugin and can't be changed in WindowsGSM. If your machine has less free memory, the server won't start or will be slow. Then you'd have to change the two values in `ProjectZomboid.cs` yourself and reload the plugin.
+By default the server gets 16 GB of RAM. To change that, add `-Xmx` to the start parameters in WindowsGSM, for example:
+
+```text
+-Xmx8g -servername MyServer
+```
+
+The plugin hands `-Xms` and `-Xmx` to Java and everything else to Project Zomboid. If you only set one of them, it's used for both. Restart the server after changing it. If the machine doesn't have enough free memory for the value, the server won't start or will be slow.
 
 ## Updating
 
